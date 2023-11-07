@@ -6,6 +6,7 @@ import hotelRouter from "./Routes/hotels.js"
 import roomRouter from "./Routes/rooms.js"
 import userRouter from "./Routes/user.js"
 import cookie from "cookie-parser"
+import cors from "cors"
 
 const app = express()
 dotenv.config()
@@ -26,7 +27,7 @@ mongoose.connection.on("disconnected", () => {
 mongoose.connection.on("connected", () => {
     console.log("connection connected")
 })
-
+app.use(cors())
 app.use(cookie())
 app.use(express.json())
 app.use("/api/auth", authRouter)
